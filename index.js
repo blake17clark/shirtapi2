@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+require("dotenv").config();
 const port = process.env.PORT || 4000
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require("mongodb").ObjectID;
-const db_url=
-    'mongodb+srv://admin1blakeffr:BlakeHelio2@cluster0-s2mfp.mongodb.net/test?retryWrites=true&w=majority'
+const db_url= process.env.LINK_URL
 const mongoParameters = { useNewUrlParser: true, useUnifiedTopology: true };
 const database = "FFR";
 const collection = "Shirts";   
