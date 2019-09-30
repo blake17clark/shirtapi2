@@ -8,7 +8,7 @@ const ObjectId = require("mongodb").ObjectID;
 const db_url= process.env.LINK_URL
 const mongoParameters = { useNewUrlParser: true, useUnifiedTopology: true };
 const database = "FFR";
-const collection = "Shirts";   
+const collection = "Shirts";   // adding this for the heck of it
 
 app.use(express.json())
 app.use(cors())
