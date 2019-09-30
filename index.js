@@ -15,7 +15,6 @@ app.use(cors())
 
 // const client = new MongoClient(db_url, { useNewUrlParser: true, useUnifiedTopology: true });    '/= is the path to port 4000
 
-// MongoClient.connect('mongodb+srv://admin1blakeffr:BlakeHelio2@cluster0-s2mfp.mongodb.net/test?retryWrites=true&w=majority', function (err, db){
 //     if (err) throw err
 //     db.collection('Shirts').find().toArray(function (err, result){
 //         if (err) throw err
