@@ -6,9 +6,9 @@ const port = process.env.PORT || 4000
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require("mongodb").ObjectID;
 const db_url= process.env.LINK_URL
-const mongoParameters = { useNewUrlParser: true, useUnifiedTopology: true };
+const mongoParameters = { useNewUrlParser: true, useUnifiedTopology: true };     // deperacated unless we use this code, looked it up
 const database = "FFR";
-const collection = "Shirts";   // adding this for the heck of it
+const collection = "Shirts";   //  where api is connecting to the data base n linking to UI
 
 app.use(express.json())
 app.use(cors())
@@ -23,14 +23,14 @@ app.use(cors())
 // }) now I need to do a fetch on the front end to talk to API. We're talking to mongo now
 
 
-app.get('/orders', (req, res) => {
+app.get('/orders', (_req, res) => {
   MongoClient.connect(db_url, mongoParameters, (err, client) => {
     if (err) throw err
     const db = client.db(database)
     db.collection(collection).find().toArray((err, results) => {
       if (err) throw err
       res.send(results)
-      // client.close();
+      // client.close();       Get FFR database n Shirts collection use express Read
     }) 
   }) 
 
@@ -59,7 +59,7 @@ app.get('/orders', (req, res) => {
     });
 });
 
-
+// post is Create. Async has await for each variable
 
 
 //update lead by ID two step setup delete and post this will be harder
@@ -85,7 +85,7 @@ app.put("/:ID", (req, res) => {
     client.close();
   });
   })
-
+   // put is my update
 
 
 //delete lead by ID
@@ -93,8 +93,9 @@ app.delete("/:ID", (req, res) => {
   MongoClient.connect(db_url, mongoParameters, async(err, client) => {
     if (err) throw err
     const db = client.db(database)
-    await db.collection(collection).deleteOne({_id: ObjectId(req.params.ID)});
-    res.send("deleted" + req.params.ID);
+    const result = await db.collection(collection).deleteOne({_id: ObjectId(req.params.ID)});
+    console.log(result);
+    res.send(result);
 
     client.close();
   });
